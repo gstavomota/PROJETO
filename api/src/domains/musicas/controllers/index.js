@@ -3,6 +3,7 @@ const router = express.Router();
 const Musica = require('../models/Musica');
 const Usuario = require('../models/Usuario')
 const Artistas = require('../models/Artistas')
+const Musicas = require('../models/Musicas')
 
 router.get('/', (req,res) =>{
     res.status(200).send(Musica);
