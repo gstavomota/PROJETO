@@ -27,7 +27,7 @@ const Artistas = sequelize.define('Artistas',{
 //         { foreignKey: 'ArtistaId', as:'artist'})
 // };
 
-Artistas.sync({alter:true, force:false}).then(()=>{
+Artistas.sync({alter:false, force:false}).then(()=>{
     console.log ('Tabela de Artistas foi (re)criada');
 }).catch((err)=>console.log(err));
 

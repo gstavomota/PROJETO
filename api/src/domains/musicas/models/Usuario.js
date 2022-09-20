@@ -42,7 +42,7 @@ const Usuario = sequelize.define('Usuario',{
 // Usuario.hasMany(Musicas)
 // Musicas.hasMany(Usuario)
 
-Usuario.sync({alter: true, force: true})
+Usuario.sync({alter: false, force: false})
     .then(()=>{
         console.log('Tabela de Usuarios foi (re)criada');
     })

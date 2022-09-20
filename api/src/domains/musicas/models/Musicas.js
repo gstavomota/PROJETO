@@ -28,7 +28,7 @@ Musicas.belongsTo(Artistas)
 Artistas.hasMany(Musicas)
 
 
-Musicas.sync({alter: true, force: true})
+Musicas.sync({alter:false, force:false})
     .then(()=>{
         console.log('Tabela de Musicas foi (re)criada');
     })

@@ -25,7 +25,7 @@ UsuarioMusica.associate = (models) =>
 // Usuario.hasMany(Musicas)
 // Musicas.hasMany(Usuario)
 
-UsuarioMusica.sync({alter: true, force: true})
+UsuarioMusica.sync({alter: false, force: false})
     .then(()=>{
         console.log('Tabela de UsuariosMusica foi (re)criada');
     })
