@@ -4,8 +4,9 @@ const Musica = require('../models/Musica');
 const Usuario = require('../models/Usuario')
 const Artistas = require('../models/Artistas')
 const Musicas = require('../models/Musicas')
-const UsuarioMusica = require('../models/UsuarioMusica')
+const UsuarioMusica = require('../models/UsuarioMusica');
 
+// ********************************** USUARIOS ******************************************************
 router.get('/usuario', async(req,res) =>{
     const usuarios = await Usuario.findAll({raw:true})
     console.log(usuarios)
@@ -49,6 +50,96 @@ router.delete('/usuario/:id',async(req,res)=>{
 
     res.status(200).send(achaUsuario);
 })
+
+// ********************************** ARTISTAS ******************************************************
+router.get('/artista', async(req,res) =>{
+    const artista = await Artistas.findAll({raw:true})
+    console.log(artista)
+    res.status(200).send(artista);
+})
+
+router.post('/artista',async(req,res) =>{
+
+    const body = req.body;
+    await Artistas.create(body);
+
+    res.status(200).send(req.body);
+});
+
+router.put ('/artista/:id',async(req,res)=>{
+    var id = req.params.id;
+    const achaArtista = await Artistas.findOne({raw: true, where:{id: id}})
+
+    const nome = req.body.nome
+    const nacionalidade = req.body.nacionalidade
+    const foto = req.body.foto
+
+    const dadosArtista = {
+        nome,
+        nacionalidade,
+        foto,
+    }
+
+    await Artistas.update(dadosArtista, { where: {id: id}})
+
+    res.status(200).send(achaArtista);
+});
+
+router.delete('/artista/:id',async(req,res)=>{
+    var id = req.params.id;
+
+    const achaArtista = await Artistas.findOne({raw: true, where:{id: id}})    
+    Artistas.destroy({where:{id:id}})
+
+    res.status(200).send(achaArtista);
+})
+
+// ********************************** MUSICA ******************************************************
+
+router.get('/musica', async(req,res) =>{
+    const musica = await Musicas.findAll({raw:true})
+    console.log(musica)
+    res.status(200).send(musica);
+})
+
+router.post('/musica',async(req,res) =>{
+
+    const body = req.body;
+    await Musicas.create(body);
+
+    res.status(200).send(req.body);
+});
+
+router.put ('/musica/:id',async(req,res)=>{
+    var id = req.params.id;
+    const achaMusica = await Musicas.findOne({raw: true, where:{id: id}})
+
+    const titulo = req.body.titulo
+    const ArtistaId = req.body.ArtistaId
+    const foto = req.body.foto
+    const categoria = req.body.categoria
+
+    const dadosMusica = {
+        titulo,
+        ArtistaId,
+        foto,
+        categoria,
+    }
+
+    await Musicas.update(dadosMusica, { where: {id: id}})
+
+    res.status(200).send(achaMusica);
+});
+
+router.delete('/musica/:id',async(req,res)=>{
+    var id = req.params.id;
+
+    const achaMusica = await Musicas.findOne({raw: true, where:{id: id}})    
+    Musicas.destroy({where:{id:id}})
+
+    res.status(200).send(achaMusica);
+})
+
 // router.get('/', (req,res) =>{
 //     res.status(200).send(Musica);
 // })
