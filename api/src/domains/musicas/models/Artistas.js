@@ -22,6 +22,11 @@ const Artistas = sequelize.define('Artistas',{
     }
 });
 
+// Artistas.associate = (models) => {
+//     Artistas.hasMany(models.Musicas,
+//         { foreignKey: 'ArtistaId', as:'artist'})
+// };
+
 Artistas.sync({alter:true, force:false}).then(()=>{
     console.log ('Tabela de Artistas foi (re)criada');
 }).catch((err)=>console.log(err));

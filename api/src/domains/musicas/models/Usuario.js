@@ -1,5 +1,7 @@
 const sequelize = require('../../../../database/index');
 const {DataTypes, Sequelize} = require('sequelize');
+const UsuarioMusica = require('./UsuarioMusica');
+const Musicas = require('./Musicas')
 
 const Usuario = sequelize.define('Usuario',{
     id:{
@@ -26,9 +28,24 @@ const Usuario = sequelize.define('Usuario',{
     }
 });
 
-Usuario.sync({alter: false, force: false})
+// Usuario.belongsToMany(Musicas,{
+//     through: {
+//         model: UsuarioMusica
+//     }
+// })
+
+// Musicas.belongsToMany(Usuario,{
+//     through: {
+//         model: UsuarioMusica
+//     }
+//})
+// Usuario.hasMany(Musicas)
+// Musicas.hasMany(Usuario)
+
+Usuario.sync({alter: true, force: true})
     .then(()=>{
         console.log('Tabela de Usuarios foi (re)criada');
     })
     .catch((err)=>console.log(err));
+    
 module.exports = Usuario;
