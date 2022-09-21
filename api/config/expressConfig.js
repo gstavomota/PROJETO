@@ -8,6 +8,9 @@ app.use(express.urlencoded({
 }));
 
 const musicaRouter = require('../src/domains/musicas/controllers/index');
+const naoEncontrada = require('../middlewares/rotaNaoEncontrada');
+
 app.use('/api/musica', musicaRouter);
+app.use(naoEncontrada)
 
 module.exports = app;
