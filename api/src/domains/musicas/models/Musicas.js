@@ -1,7 +1,7 @@
 const sequelize = require('../../../../database/index');
 const {DataTypes, Sequelize} = require('sequelize');
-const Artistas = require('./Artistas')
-const Usuario = require('./Usuario')
+const Usuario = require('../../usuarios/models/Usuario');
+const UsuarioMusica = require('../../UsuarioMusica/models/UsuarioMusica');
 
 const Musicas = sequelize.define('Musicas',{
     id:{
@@ -24,13 +24,21 @@ const Musicas = sequelize.define('Musicas',{
     }
 });
 
-Musicas.belongsTo(Artistas)
-Artistas.hasMany(Musicas)
-
-
-Musicas.sync({alter:false, force:false})
+Musicas.sync({alter:true, force:true})
     .then(()=>{
         console.log('Tabela de Musicas foi (re)criada');
     })
     .catch((err)=>console.log(err));
+    
+// Usuario.sync({alter:true, force:true})
+//     .then(()=>{
+//         console.log('Tabela de Usuariox foi (re)criada');
+//     })
+//     .catch((err)=>console.log(err));
+    
+    // Musicas.belongsTo(Artistas)
+    // Artistas.hasMany(Musicas)
+    // Musicas.belongsToMany(Usuario, {through: UsuarioMusica})
+    // Usuario.belongsToMany(Musicas, {through: UsuarioMusica})
+    
 module.exports = Musicas;

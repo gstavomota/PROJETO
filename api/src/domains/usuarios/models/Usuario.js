@@ -1,7 +1,8 @@
 const sequelize = require('../../../../database/index');
 const {DataTypes, Sequelize} = require('sequelize');
-const UsuarioMusica = require('./UsuarioMusica');
-const Musicas = require('./Musicas')
+const UsuarioMusica = require('../../UsuarioMusica/models/UsuarioMusica');
+const Musicas = require('../../musicas/models/Musicas');
+const Artistas = require('../../artistas/models/Artistas');
 
 const Usuario = sequelize.define('Usuario',{
     id:{
@@ -45,4 +46,5 @@ Usuario.sync({alter: true, force: true})
         console.log('Tabela de Usuarios foi (re)criada');
     })
     .catch((err)=>console.log(err));
+
 module.exports = Usuario;
