@@ -38,9 +38,9 @@ const Usuario = sequelize.define('Usuario',{
 //     through: {
 //         model: UsuarioMusica
 //     }
-//})
+// })
 
-Usuario.sync({alter: false, force: false})
+Usuario.sync({alter: true, force: true})
     .then(()=>{
         console.log('Tabela de Usuarios foi (re)criada');
     })
